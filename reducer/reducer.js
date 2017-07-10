@@ -11,9 +11,9 @@ export const initialState = {
 
 export function reducer (prevState = initialState, action) {
     if (!action) return prevState;
-    if (!prevState.stock[action.item]) return prevState;
 
     if (action.type === types.ADD_TO_BASKET) {
+        if (!prevState.stock[action.item]) return prevState;
         if (!action.item) return prevState;
         const newState = Object.assign({}, prevState);
         
@@ -50,6 +50,18 @@ export function reducer (prevState = initialState, action) {
         // update stock
         newState.stock = Object.assign({}, newState.stock);
         delete newState.stock[action.item];
+
+        return newState;
+    }
+
+    console.log('WOOOO', action.type)
+    if (action.type === types.ADD_TO_STOCK) {
+        if (!action.type) return prevState;
+        const newState = Object.assign({}, prevState);
+
+        // update stock
+        newState.stock = Object.assign({}, newState.stock);
+        newState.stock[action.item.product] = action.item.quantity;
 
         return newState;
     }

@@ -66,4 +66,21 @@ describe('REDUCER', () => {
             })
         })
     })
+
+    describe('action: ADD_TO_STOCK', () => {
+        it('returns the updated state', () => {
+            const toUpdate = {product: 'not popcorn', quantity: 5}
+            const action = actions.addToStock(toUpdate);
+            const newState = reducer(initialState, action);
+            expect(newState).to.eql({
+                basket: {},
+                stock: {
+                    'Tomato': 10,
+                    'Tofu': 10,
+                    'Potato': 10,
+                    'not popcorn': 5
+                }
+            })
+        })
+    })
 });
