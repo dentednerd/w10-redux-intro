@@ -37,4 +37,34 @@ describe('REDUCER', () => {
             expect(newState.basket).to.not.equal(initialState.basket);
         });
     });
+
+    describe('action: REMOVE_FROM_BASKET', () => {
+        it('returns the updated state', () => {
+            const action = actions.removeFromBasket('Tofu');
+            const newState = reducer(initialState, action);
+            expect(newState).to.eql({
+                basket: {},
+                stock: {
+                    'Tomato': 10,
+                    'Tofu': 11,
+                    'Potato': 10
+                }
+            })
+        })
+    })
+
+    describe('action: REMOVE_FROM_STOCK', () => {
+        it('returns the updated state', () => {
+            const action = actions.removeFromStock('Tofu');
+            const newState = reducer(initialState, action);
+            expect(newState).to.eql({
+                basket: {},
+                stock: {
+                    'Tomato': 10,
+                    'Potato': 10
+                }
+            })
+                console.log(newState)
+        })
+    })
 });
