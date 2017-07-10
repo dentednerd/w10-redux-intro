@@ -64,7 +64,6 @@ describe('REDUCER', () => {
                     'Potato': 10
                 }
             })
-                console.log(newState)
         })
     })
 });
