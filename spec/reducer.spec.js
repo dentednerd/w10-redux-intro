@@ -13,12 +13,24 @@ describe('REDUCER', () => {
             const newState = reducer(initialState, action);
             expect(newState).to.eql({
                 basket: {
-                    'Tofu': 1
+                    'Tofu': {
+                            quantity: 1,
+                            price: 1.50
+                    }
                 },
-                stock: {
-                    'Tomato': 10,
-                    'Tofu': 9,
-                    'Potato': 10
+                stock:  {
+                   'Tomato': {
+                             quantity: 10,
+                             price: 0.50
+                           },
+                   'Tofu': {
+                           quantity: 9,
+                           price: 1.50
+                           },
+                   'Potato': {
+                             quantity: 10,
+                             price: 0.20
+                            }
                 }
             });
         });
@@ -44,10 +56,19 @@ describe('REDUCER', () => {
             const newState = reducer(initialState, action);
             expect(newState).to.eql({
                 basket: {},
-                stock: {
-                    'Tomato': 10,
-                    'Tofu': 11,
-                    'Potato': 10
+                stock:  {
+                   'Tomato': {
+                             quantity: 10,
+                             price: 0.50
+                           },
+                   'Tofu': {
+                           quantity: 11,
+                           price: 1.50
+                           },
+                   'Potato': {
+                             quantity: 10,
+                             price: 0.20
+                            }
                 }
             })
         })
@@ -59,9 +80,15 @@ describe('REDUCER', () => {
             const newState = reducer(initialState, action);
             expect(newState).to.eql({
                 basket: {},
-                stock: {
-                    'Tomato': 10,
-                    'Potato': 10
+                stock:  {
+                   'Tomato': {
+                             quantity: 10,
+                             price: 0.50
+                           },
+                   'Potato': {
+                             quantity: 10,
+                             price: 0.20
+                            }
                 }
             })
         })
@@ -69,16 +96,24 @@ describe('REDUCER', () => {
 
     describe('action: ADD_TO_STOCK', () => {
         it('returns the updated state', () => {
-            const toUpdate = {product: 'not popcorn', quantity: 5}
+            const toUpdate = {product: 'not popcorn', quantity: 5, price: 100}
             const action = actions.addToStock(toUpdate);
             const newState = reducer(initialState, action);
             expect(newState).to.eql({
                 basket: {},
                 stock: {
-                    'Tomato': 10,
-                    'Tofu': 10,
-                    'Potato': 10,
-                    'not popcorn': 5
+                   'Tomato': {
+                             quantity: 10,
+                             price: 0.50
+                           },
+                   'Tofu': {
+                           quantity: 10,
+                           price: 1.50
+                           },
+                   'Potato': {
+                             quantity: 10,
+                             price: 0.20
+                            }
                 }
             })
         })

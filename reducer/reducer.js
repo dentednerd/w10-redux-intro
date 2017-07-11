@@ -3,9 +3,18 @@ import * as types from '../actions/types';
 export const initialState = {
     basket: {},
     stock: {
-        'Tomato': 10,
-        'Tofu': 10,
-        'Potato': 10
+        'Tomato': {
+            quantity: 10,
+            price: 0.50
+        },
+        'Tofu': {
+            quantity: 10,
+            price: 1.50
+        },
+        'Potato': {
+            quantity: 10,
+            price: 0.20
+        }
     }
 };
 
@@ -54,7 +63,6 @@ export function reducer (prevState = initialState, action) {
         return newState;
     }
 
-    console.log('WOOOO', action.type)
     if (action.type === types.ADD_TO_STOCK) {
         if (!action.type) return prevState;
         const newState = Object.assign({}, prevState);
